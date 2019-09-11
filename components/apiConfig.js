@@ -24,9 +24,19 @@ apiUrl = apiUrls.development
 export default apiUrl
 
 
-export const getCatagories = () => {
+export const getApartments = () => {
   return axios
-    .get(`${apiUrl}/categories`)
+    .get(`${apiUrl}/apartments`)
+    .then(res => res)
+    .catch(error => error);
+};
+
+export const updateApartments = (token ,id, apartment) => {
+  const config = {
+    headers: { Authorization: `bearer ${token}`}
+  };
+  return axios
+    .patch(`${apiUrl}/apartments/${id}`,{apartment}, config)
     .then(res => res)
     .catch(error => error);
 };
@@ -50,8 +60,6 @@ export const loginUser = (email, password) => {
         password: password
       }
     })
-    .then(res => res)
-    .catch(err => err);
 }
 
 export const regiesterUser = (userName, password, passwordConfirmation) => {

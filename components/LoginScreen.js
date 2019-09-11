@@ -9,7 +9,7 @@ import { loginUser } from "./apiConfig";
 
 
 const ACCESS_TOKEN = "access_token";
-const USERNAME = "username";
+const EMAIL = "email";
 const ID = "user_id";
 
 export default class LoginScreen extends React.Component {
@@ -50,34 +50,29 @@ export default class LoginScreen extends React.Component {
     const { navigation } = this.props;
     const { userName, password } = this.state;
     console.log('q')
-    this.checkLogIn(userName, password)
-      // .then(res => {
-      //   const userData = res.data.user;
-      //   console.log(res);
+    loginUser(userName, password)
+      .then(res => {
+        const userData = res.data.user;
+        console.log(res.data);
 
-      //   screenProps.setUser(
-      //     userData.token,
-      //     userData.username,
-      //     userData._id
-      //   );
-      //   this.saveToken(
-      //     userData.token,
-      //     userData.username,
-      //     userData._id
-      //   );
+        this.saveToken(
+          userData.token,
+          userData.username,
+          userData._id
+        );
         
-      //   navigation.navigate("Admin");
-      // })
-      // .catch(err => {
-      //   console.log(err);
-      //   alert(err);
-      // });
+        navigation.navigate("Admin");
+      })
+      .catch(err => {
+        console.log(err);
+        alert(err);
+      });
   };
 
   async saveToken(token, user, id) {
     try {
       await AsyncStorage.setItem(ACCESS_TOKEN, token);
-      await AsyncStorage.setItem(USERNAME, user);
+      await AsyncStorage.setItem(EMAIL, user);
       await AsyncStorage.setItem(ID, id);
     } catch (error) {
       console.log("somthing wrong" + error);
