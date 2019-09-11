@@ -41,6 +41,16 @@ export const updateApartments = (token ,id, apartment) => {
     .catch(error => error);
 };
 
+export const deleteApartments = (token ,id) => {
+  const config = {
+    headers: { Authorization: `bearer ${token}`}
+  };
+  return axios
+    .delete(`${apiUrl}/apartments/${id}`, config)
+    .then(res => res)
+    .catch(error => error);
+};
+
 export const signOut = token => {
   const config = {
     headers: { Authorization: `bearer ${token}` }

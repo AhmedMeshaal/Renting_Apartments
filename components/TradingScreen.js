@@ -13,7 +13,7 @@ export default class TradingScreen extends React.Component {
   }
   
     static navigationOptions = {
-        title: 'Admin CRUD'
+        title: 'APARTMENTS ADs'
       };
 
       componentDidMount() {

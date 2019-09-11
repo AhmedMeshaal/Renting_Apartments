@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Container, Content, List, ListItem, InputGroup, Input, Icon, Button,Text, View} from 'native-base';
 import { createAppContainer } from 'react-navigation'; // 1.0.0-beta.27
 import { createStackNavigator } from 'react-navigation-stack';
-import {Keyboard} from 'react-native';
+import {Keyboard, AsyncStorage} from 'react-native';
 
 
 import { loginUser } from "./apiConfig";
@@ -57,7 +57,7 @@ export default class LoginScreen extends React.Component {
 
         this.saveToken(
           userData.token,
-          userData.username,
+          userData.email,
           userData._id
         );
         
