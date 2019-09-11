@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { Container, Content, List, ListItem, InputGroup, Input, Icon, Button,Text, View, Body} from 'native-base';
+import { Container, Content, List, ListItem, InputGroup, Input, Icon, Button,Text, View} from 'native-base';
 import { createAppContainer } from 'react-navigation'; // 1.0.0-beta.27
 import { createStackNavigator } from 'react-navigation-stack';
+import {Keyboard} from 'react-native';
+
 
 import { loginUser } from "./apiConfig";
 
@@ -36,7 +38,8 @@ export default class LoginScreen extends React.Component {
     const { userName, password } = this.state;
     if (userName && password) {
       //make log in
-      this.loginUser(userName, password);
+      // this.loginUser(userName, password);
+      console.log('login chk')
     } else {
       alert("Fill the Input");
     }
@@ -46,28 +49,29 @@ export default class LoginScreen extends React.Component {
     const screenProps = this.props.screenProps;
     const { navigation } = this.props;
     const { userName, password } = this.state;
-    loginUser(userName, password)
-      .then(res => {
-        const userData = res.data.user;
-        console.log(res);
+    console.log('q')
+    this.checkLogIn(userName, password)
+      // .then(res => {
+      //   const userData = res.data.user;
+      //   console.log(res);
 
-        screenProps.setUser(
-          userData.token,
-          userData.username,
-          userData._id
-        );
-        this.saveToken(
-          userData.token,
-          userData.username,
-          userData._id
-        );
+      //   screenProps.setUser(
+      //     userData.token,
+      //     userData.username,
+      //     userData._id
+      //   );
+      //   this.saveToken(
+      //     userData.token,
+      //     userData.username,
+      //     userData._id
+      //   );
         
-        navigation.navigate("Admin");
-      })
-      .catch(err => {
-        console.log(err);
-        alert(err);
-      });
+      //   navigation.navigate("Admin");
+      // })
+      // .catch(err => {
+      //   console.log(err);
+      //   alert(err);
+      // });
   };
 
   async saveToken(token, user, id) {
@@ -110,7 +114,7 @@ export default class LoginScreen extends React.Component {
                             
                         </ListItem>
                         <Button 
-                         onPress={() => this.loginUser}
+                         onPress={this.loginUser}
                         primary rounded block iconRight style={{margin: 20}}><Text>LOG IN</Text><Icon name="ios-arrow-forward" /></Button>
                     </List>
                 </Content>
