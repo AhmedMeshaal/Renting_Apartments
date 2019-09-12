@@ -9,8 +9,9 @@ import FamiliesScreen from './components/FamiliesScreen';
 import LaborsScreen from './components/LaborScreen';
 import TradingScreen from './components/TradingScreen';
 import AddApartment from './components/AddApartment';
-import ViewApartment from './components/ViewApartment';  
+import ApartmentView from './components/ApartmentView';  
 import AdminControl from './components/AdminControl';  
+import DisplayApartment from './components/DisplayAppartment';  
 
 
 class HomeScreen extends React.Component {
@@ -118,6 +119,9 @@ const MainStack = createStackNavigator(
     Trading: {
       screen: TradingScreen,
     },
+    Ad: {
+      screen: ApartmentView,
+    },
     Login: {
       screen: LoginScreen,
       // navigationOptions:{
@@ -130,11 +134,11 @@ const MainStack = createStackNavigator(
         title: 'Apartment Control'
       }
     },
-    Apartment: {
-      screen: ViewApartment
-    },
     Admin: {
       screen: AdminControl
+    },
+    Display: {
+      screen: DisplayApartment,
     }
   },
   {

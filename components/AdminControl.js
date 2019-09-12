@@ -34,7 +34,7 @@ export default class TradingScreen extends React.Component {
        return <ListItem key={appart._id} onPress={() => this.props.navigation.navigate('ApartmentControl', {
          appartmentData: appart
        })} style={{display: 'inline-block', flexDirection:'row', flexWrap:'wrap'}}>
-       <Thumbnail style={{height: 50}} source={{uri: 'https://di-uploads-pod4.dealerinspire.com/rivercityhyundai/uploads/2017/05/HyundaiLogoStacked_4cblk-1024x659.gif'}} />
+       <Thumbnail style={{height: 50}} source={{uri: appart.image}} />
        
        <Text style={{ marginLeft: 15, marginRight: 5}}>Street:</Text>
        <Text note>{appart.address}</Text> 
@@ -52,13 +52,14 @@ export default class TradingScreen extends React.Component {
       return (
         <Container>
                 <Content>
+                <Button onPress={() => this.props.navigation.navigate('Ad')}><Text>Add New Apartment >></Text></Button>
                     <List>
                         
                         {this.state.apartments ? listApartment: null}
                        
                     </List>
 
-                    {/* <Button onPress={() => this.props.navigation.navigate('Singles')}><Text>+++</Text></Button> */}
+                    
                 </Content>
             </Container>
     
